@@ -95,3 +95,19 @@ WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 19);
 INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
 SELECT 20, 8, 9, '2024-07-24', '2024-07-24', 190.0 
 WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 20);
+
+INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
+SELECT 21, 1, 2, '2024-07-15', '2024-07-15', 280.0
+WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 21);
+
+INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
+SELECT 22, 2, 1, '2024-07-16', '2024-07-16', 310.0
+WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 22);
+
+INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
+SELECT 23, 1, 2, '2024-07-15', '2024-07-15', 195.0
+WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 23);
+
+INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
+SELECT 24, 2, 1, '2024-07-16', '2024-07-16', 212.0
+WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 24);

@@ -27,7 +27,9 @@ public class FlightSearchService {
             LocalDateTime returnStartDateTime = returnDate.atStartOfDay();
             LocalDateTime returnEndDateTime = returnDate.atTime(LocalTime.MAX);
             System.out.println("returnDate: " + returnDate);
-            return flightRepository.findRoundTripFlights(departureCity, arrivalCity, departureStartDateTime, departureEndDateTime, returnStartDateTime, returnEndDateTime);
+            List<Flight> flights = flightRepository.searchFlightsWithReturn(departureCity, arrivalCity, departureStartDateTime, departureEndDateTime, returnStartDateTime, returnEndDateTime);
+            System.out.println("flights: " + flights);
+            return flightRepository.searchFlightsWithReturn(departureCity, arrivalCity, departureStartDateTime, departureEndDateTime, returnStartDateTime, returnEndDateTime);
         } else {
             return flightRepository.findOneWayFlights(departureCity, arrivalCity, departureStartDateTime, departureEndDateTime);
         }

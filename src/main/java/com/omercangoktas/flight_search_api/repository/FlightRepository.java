@@ -22,11 +22,19 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
                                     @Param("departureStartDateTime") LocalDateTime departureStartDateTime,
                                     @Param("departureEndDateTime") LocalDateTime departureEndDateTime);
 
-    @Query("SELECT f FROM Flight f WHERE f.departureAirport.city = :departureCity AND f.arrivalAirport.city = :arrivalCity AND f.departureDateTime BETWEEN :departureStartDateTime AND :departureEndDateTime AND EXISTS (SELECT 1 FROM Flight rf WHERE rf.departureAirport.city = :arrivalCity AND rf.arrivalAirport.city = :departureCity AND rf.departureDateTime BETWEEN :returnStartDateTime AND :returnEndDateTime)")
-    List<Flight> findRoundTripFlights(@Param("departureCity") String departureCity,
-                                        @Param("arrivalCity") String arrivalCity,
-                                        @Param("departureStartDateTime") LocalDateTime departureStartDateTime,
-                                        @Param("departureEndDateTime") LocalDateTime departureEndDateTime,
-                                        @Param("returnStartDateTime") LocalDateTime returnStartDateTime,
-                                        @Param("returnEndDateTime") LocalDateTime returnEndDateTime);
+    @Query("SELECT f FROM Flight f " +
+            "WHERE (f.departureAirport.city = :departureCity AND f.arrivalAirport.city = :arrivalCity " +
+            "AND f.departureDateTime BETWEEN :departureStartDateTime AND :departureEndDateTime) " +
+            "OR (f.departureAirport.city = :arrivalCity AND f.arrivalAirport.city = :departureCity " +
+            "AND f.departureDateTime BETWEEN :returnStartDateTime AND :returnEndDateTime)")
+    List<Flight> searchFlightsWithReturn(
+        @Param("departureCity") String departureCity,
+        @Param("arrivalCity") String arrivalCity,
+        @Param("departureStartDateTime") LocalDateTime departureStartDateTime,
+        @Param("departureEndDateTime") LocalDateTime departureEndDateTime,
+        @Param("returnStartDateTime") LocalDateTime returnStartDateTime,
+        @Param("returnEndDateTime") LocalDateTime returnEndDateTime);
+
+    // List<Flight> findByDepartureCityAndArrivalCityAndDepartureDateTimeAfterAndReturnDateTimeBefore(
+    //     String departureCity, String arrivalCity, LocalDateTime departureDateTime, LocalDateTime returnDateTime);
 }

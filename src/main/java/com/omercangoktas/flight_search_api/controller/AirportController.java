@@ -39,7 +39,6 @@ public class AirportController {
 
     @GetMapping(value = "/{airportId}")
     public Airport getAirportById(@PathVariable Long airportId) throws Exception {
-        logger.info("Retrieving airport with id: " + airportId);
         return airportService.getAirportById(airportId);
     }
 

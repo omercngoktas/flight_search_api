@@ -2,6 +2,7 @@ package com.omercangoktas.flight_search_api.controller;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.omercangoktas.flight_search_api.exception.NotFoundException;
 import com.omercangoktas.flight_search_api.model.Flight;
+import com.omercangoktas.flight_search_api.service.AirportService;
 import com.omercangoktas.flight_search_api.service.FlightService;
+
+import ch.qos.logback.classic.Logger;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping(value = "/flights")
 public class FlightController {
-
+    Logger logger = (Logger) LoggerFactory.getLogger(FlightController.class);
     private FlightService flightService;
 
-    public FlightController(FlightService flightService) {
+    public FlightController(FlightService flightService ) {
         this.flightService = flightService;
     }
 
@@ -35,14 +39,15 @@ public class FlightController {
         return flightService.getAllFlights();
     }
 
-    @GetMapping(value = "/{flightId}")
-    public Flight getFlightById(@PathVariable Long flightId) throws Exception {
-        return flightService.getFlightById(flightId);
+    @GetMapping(value = "/{airportId}")
+    public Flight getFlightById(@PathVariable Long airportId) throws Exception {
+        return flightService.getFlightById(airportId);
     }
 
     // creating new flight
     @PostMapping
     public Flight createFlight(@RequestBody Flight flight) {
+        logger.info("Creating new flight: " + flight);
         return flightService.createFlight(flight);
     }
 

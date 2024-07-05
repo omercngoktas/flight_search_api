@@ -11,7 +11,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.http.HttpMethod;
 
@@ -43,15 +44,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers(HttpMethod.DELETE, "/airports/**").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/airports/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/airports/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/airports/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/flights/search").hasAnyRole("USER", "ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                                .defaultSuccessUrl("/", true) // Giriş başarılı olduğunda ana sayfaya yönlendir
-                                .permitAll()
+                        .defaultSuccessUrl("/", true) // Giriş başarılı olduğunda ana sayfaya yönlendir
+                        .permitAll()
                 )
                 .httpBasic(withDefaults())
-                .csrf(csrf -> csrf.disable()); // CSRF korumasını devre dışı bırakın
+                .csrf(csrf -> csrf.disable()) // CSRF korumasını devre dışı bırakın
+                .sessionManagement(session -> session
+                        .invalidSessionUrl("/login?invalid-session=true")
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                );
         return http.build();
     }
 }
