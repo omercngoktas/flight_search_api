@@ -15,11 +15,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-
 @Configuration
 @EnableWebSecurity
 @EnableScheduling

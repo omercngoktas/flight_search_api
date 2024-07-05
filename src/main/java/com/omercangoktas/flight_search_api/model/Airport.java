@@ -8,13 +8,18 @@ import jakarta.persistence.Id;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
+@Schema(description = "Airport entity")
 public class Airport {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID of the airport", example = "1")
     private Long airportId;
     
+    @Schema(description = "City of the airport", example = "Istanbul")
     private String city;
 
     private static final Logger logger = LoggerFactory.getLogger(Airport.class);

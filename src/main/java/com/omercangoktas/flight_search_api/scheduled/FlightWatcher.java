@@ -26,7 +26,7 @@ public class FlightWatcher {
     }
 
     // @Scheduled(cron = "0 0 0 * * *") // Her gün 00:00'da çalışacak
-    @Scheduled(fixedDelay = 60 * 1000)
+    @Scheduled(fixedDelay = 600 * 1000)
     public void watchFlights() {
         try {
             List<Flight> flights = mockFlightService.getFlightsFromMockAPI();

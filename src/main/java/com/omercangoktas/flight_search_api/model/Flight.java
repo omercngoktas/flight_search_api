@@ -9,11 +9,15 @@ import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
+@Schema(description = "A flight entity")
 public class Flight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "The flight ID", example = "1")
     private Long flightId;
 
     @ManyToOne
@@ -24,8 +28,13 @@ public class Flight {
     @JoinColumn(name = "arrival_airport_id")
     private Airport arrivalAirport;
 
+    @Schema(description = "The departure date and time", example = "2020-07-05T18:00:00.000Z")
     private LocalDateTime departureDateTime;
+    
+    @Schema(description = "The arrival date and time", example = "2020-07-05T23:30:14.830Z")
     private LocalDateTime arrivalDateTime;
+    
+    @Schema(description = "The price of the flight", example = "150.0")
     private double price;
 
     public Flight() {

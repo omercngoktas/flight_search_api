@@ -3,7 +3,6 @@ package com.omercangoktas.flight_search_api.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,7 +17,6 @@ public class MockFlightService {
 
     private final AirportService airportService;
 
-    @Autowired
     public MockFlightService(AirportService airportService) {
         this.airportService = airportService;
     }
