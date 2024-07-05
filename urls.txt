@@ -1,2 +1,3 @@
 http://localhost:8080/flights/search?departureCity=Istanbul&arrivalCity=Ankara&departureDate=2024-07-15&returnDate=2024-07-16
 http://localhost:8080/flights/search?departureCity=Istanbul&arrivalCity=Ankara&departureDate=2024-07-05
+

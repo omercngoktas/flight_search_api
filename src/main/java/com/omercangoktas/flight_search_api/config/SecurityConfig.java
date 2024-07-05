@@ -11,17 +11,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.http.HttpMethod;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableWebSecurity
+@EnableScheduling
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        @Bean
+        public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername("user")
                 .password(passwordEncoder.encode("password"))
                 .roles("USER")
@@ -33,15 +38,15 @@ public class SecurityConfig {
                 .build();
 
         return new InMemoryUserDetailsManager(user, admin);
-    }
+        }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+        @Bean
+        public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.DELETE, "/airports/**").hasRole("ADMIN")
@@ -66,5 +71,6 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")
                 );
         return http.build();
-    }
+        }
+
 }

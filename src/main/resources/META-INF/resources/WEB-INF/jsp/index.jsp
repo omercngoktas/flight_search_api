@@ -52,16 +52,26 @@
         th {
             background-color: #f2f2f2;
         }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
     </style>
 </head>
 <body>
     <h2>Flight and Airport Management</h2>
+
+    <p>Welcome, ${username}</p>
     
     <!-- Buttons for listing flights and airports -->
     <button onclick="window.location.href='/flights'">List All Flights</button>
     <button onclick="window.location.href='/airports'">List All Airports</button>
     
+    <!-- Logout Button -->
+    <form action="/logout" method="post" class="logout-button">
+        <button type="submit">Logout</button>
+    </form>
     
-
 </body>
 </html>
