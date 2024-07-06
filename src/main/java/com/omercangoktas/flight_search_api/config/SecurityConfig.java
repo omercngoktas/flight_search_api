@@ -51,11 +51,11 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .defaultSuccessUrl("/", true) // Giriş başarılı olduğunda ana sayfaya yönlendir
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .httpBasic(withDefaults())
-                .csrf(csrf -> csrf.disable()) // CSRF korumasını devre dışı bırakın
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session
                         .invalidSessionUrl("/login?invalid-session=true")
                 )

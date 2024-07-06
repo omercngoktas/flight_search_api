@@ -72,8 +72,3 @@ public class MockFlightService {
     }
 
 }
-
-
-// INSERT INTO flight (flight_id, departure_airport_id, arrival_airport_id, departure_date_time, arrival_date_time, price) 
-// SELECT 1, 1, 2, '2024-07-05', '2024-07-05', 250.0 
-// WHERE NOT EXISTS (SELECT 1 FROM flight WHERE flight_id = 1);
