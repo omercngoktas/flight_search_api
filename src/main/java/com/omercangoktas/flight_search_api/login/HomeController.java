@@ -19,6 +19,8 @@ public class HomeController {
         model.addAttribute("username", username);
         model.addAttribute("role", role);
 
+        System.out.println("User Role: " + role); // Rolü konsola yazdır
+
         return "index";
     }
 }

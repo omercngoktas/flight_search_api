@@ -34,7 +34,7 @@
             color: white;
             border: none;
             cursor: pointer;
-            margin-bottom: 10px; /* Add margin below buttons */
+            margin-bottom: 10px;
         }
         button:hover {
             background-color: #45a049;
@@ -64,14 +64,12 @@
 
     <p>Welcome, ${username}</p>
     
-    <!-- Buttons for listing flights and airports -->
     <button onclick="window.location.href='/flights'">List All Flights</button>
     <button onclick="window.location.href='/airports'">List All Airports</button>
-    
-    <!-- Logout Button -->
+
     <form action="/logout" method="post" class="logout-button">
         <button type="submit">Logout</button>
     </form>
-    
+
 </body>
 </html>
