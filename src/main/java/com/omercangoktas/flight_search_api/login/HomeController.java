@@ -13,14 +13,13 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String gotoWelcomePage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName(); // Kullanıcının adını al
-        String role = authentication.getAuthorities().toString(); // Kullanıcının rollerini al
+        String username = authentication.getName();
+        String role = authentication.getAuthorities().toString();
 
         model.addAttribute("username", username);
         model.addAttribute("role", role);
 
-        System.out.println("User Role: " + role); // Rolü konsola yazdır
-
+        System.out.println("User Role: " + role);
         return "index";
     }
 }

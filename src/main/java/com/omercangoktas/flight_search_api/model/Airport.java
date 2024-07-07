@@ -25,7 +25,6 @@ public class Airport {
     private static final Logger logger = LoggerFactory.getLogger(Airport.class);
 
     public Airport() {
-        // Default constructor required by JPA
     }
 
     public Airport(String city) {

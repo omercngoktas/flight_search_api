@@ -13,11 +13,11 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("NAME OF SERVICE")
-                        .description("API Endpoint Decoration")
+                .info(new Info().title("Flight Search API")
+                        .description("Flight Search API with Spring Boot and OpenAPI")
                         .version("1.0.0")
                         .contact(new Contact()
-                                .name("Dev-Team")
+                                .name("Dev Team")
                                 .url("https://www.dev-team.com/")
                                 .email("dev-team@gmail.com"))
                         .license(new License()

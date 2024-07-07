@@ -38,7 +38,7 @@ public class Flight {
     private double price;
 
     public Flight() {
-        // Default constructor required by JPA
+        
     }
 
     public Flight(Airport departureAirport, Airport arrivalAirport, LocalDateTime departureDateTime,
